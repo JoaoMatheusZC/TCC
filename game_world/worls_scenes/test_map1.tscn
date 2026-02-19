@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgrwynlpt53dq"]
+
+[ext_resource type="PackedScene" uid="uid://dhthdlh6rdwu7" path="res://game_objects/entities/enimies/explorer/explorer_enime.tscn" id="1_d64yk"]
+[ext_resource type="PackedScene" uid="uid://nnm2sihv7ik8" path="res://game_objects/entities/player/player.tscn" id="2_q3nyr"]
+
+[sub_resource type="GDScript" id="GDScript_q3nyr"]
+script/source = "extends Node
+
+var fight_scene = preload(\"res://game_world/worls_scenes/test_fight.tscn\")
+var fight_scene_instance: Node
+
+func _ready():
+	#$Player.change.connect(_on_player_change)
+	$\"Explorer Enime\".change.connect(_on_player_change)
+	$\"Explorer Enime2\".change.connect(_on_player_change)
+
+func _on_player_change(dados):
+	get_tree().paused = true
+	fight_scene_instance = fight_scene.instantiate()
+	add_child(fight_scene_instance)
+	print(dados[\"enime_1_life\"])
+	fight_scene_instance.dados = dados
+	fight_scene_instance.change_back.connect(_on_fight_change)
+	
+func _on_fight_change():
+	print(\"bbbbb\")
+	fight_scene_instance.queue_free()
+	get_tree().paused = false
+"
+
+[node name="Main Map" type="Node"]
+script = SubResource("GDScript_q3nyr")
+
+[node name="Explorer Enime" parent="." instance=ExtResource("1_d64yk")]
+position = Vector2(88, 88)
+scale = Vector2(3, 3)
+inimigo_2 = "Explorer"
+life_enime_2 = 10
+damage_enime_2 = 2
+
+[node name="Player" parent="." instance=ExtResource("2_q3nyr")]
+position = Vector2(296, 80)
+scale = Vector2(0.8, 0.8)
+
+[node name="Explorer Enime2" parent="." instance=ExtResource("1_d64yk")]
+position = Vector2(688, 88)
+scale = Vector2(3, 3)
+life_enime_1 = 15
+inimigo_2 = "Explorer"
+life_enime_2 = 15
+damage_enime_2 = 2

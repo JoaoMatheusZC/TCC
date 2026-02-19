@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbr7c8l84svvt"]
+
+[ext_resource type="Script" uid="uid://bleihcgj8jtmd" path="res://system/Script/code_editor_new.gd" id="1_aiom5"]
+
+[node name="Code Main" type="Node"]
+script = ExtResource("1_aiom5")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.2592937, 0.2592937, 0.2592937, 1)
+polygon = PackedVector2Array(-24, -8, 1200, -8, 1208, 664, -56, 656)
+
+[node name="TextEdit" type="TextEdit" parent="."]
+offset_right = 896.0
+offset_bottom = 640.0
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 976.0
+offset_top = 8.0
+offset_right = 1101.0
+offset_bottom = 39.0
+text = "Slot de Magia 1"
+
+[node name="Button2" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 1008.0
+offset_top = 600.0
+offset_right = 1063.0
+offset_bottom = 631.0
+text = "Voltar"
+
+[node name="Button3" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 976.0
+offset_top = 64.0
+offset_right = 984.0
+offset_bottom = 72.0
+text = "Carregar Slot 1"
+
+[connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="UI/Button3" to="." method="_on_button_3_pressed"]
