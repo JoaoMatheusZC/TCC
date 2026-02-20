@@ -18,19 +18,13 @@ var enimes_path = {
 }
 var player_touch = false
 
-signal change(dados)
+signal change(inimigo)
 
 func _ready() -> void:
 	$AnimatedSprite2D.play("IDLE")
 	enime_1_path = enimes_path[inimigo_1]
 	enime_2_path = enimes_path[inimigo_2]
 
-func _process(delta: float) -> void:
-	if player_touch:
-		if GlobalGameData.enime_death:
-			GlobalGameData.enime_death = false
-			player_touch = false
-			queue_free()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -43,5 +37,5 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		"enime_2_damage": damage_enime_2,
 	}
 	if body.name == "Player":
-		change.emit(dados)
+		change.emit(self)
 		player_touch = true

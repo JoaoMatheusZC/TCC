@@ -14,12 +14,11 @@ func _ready():
 	$\"Explorer Enime\".change.connect(_on_player_change)
 	$\"Explorer Enime2\".change.connect(_on_player_change)
 
-func _on_player_change(dados):
+func _on_player_change(inimigo):
 	get_tree().paused = true
 	fight_scene_instance = fight_scene.instantiate()
 	add_child(fight_scene_instance)
-	print(dados[\"enime_1_life\"])
-	fight_scene_instance.dados = dados
+	fight_scene_instance.inimigo = inimigo
 	fight_scene_instance.change_back.connect(_on_fight_change)
 	
 func _on_fight_change():

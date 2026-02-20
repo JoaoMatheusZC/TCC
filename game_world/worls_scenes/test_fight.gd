@@ -2,7 +2,7 @@ extends Node
 
 signal change_back
 
-var dados
+var inimigo
 var existe_dados = false
 
 var magia = ""
@@ -25,10 +25,10 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	
-	if dados and not existe_dados:
+	if inimigo and not existe_dados:
 		existe_dados = true
-		enime_1_life = dados["enime_1_life"]
-		enime_2_life = dados["enime_2_life"]
+		enime_1_life = inimigo.life_enime_1
+		enime_2_life = inimigo.life_enime_2
 		$"Enime 1/ProgressBar".set_max(enime_1_life)
 		$"Enime 1/ProgressBar".set_value(enime_1_life)
 		
@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 			$"Enime 2".queue_free()
 
 	if enime_1_life <= 0 and enime_2_life <= 0:
-		GlobalGameData.enime_death = true
+		inimigo.queue_free()
 		change_back.emit()
 
 func Load_File():
