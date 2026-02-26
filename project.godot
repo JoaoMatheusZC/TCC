@@ -10,7 +10,8 @@ config_version=5
 
 [application]
 
-config/name="Projeto TCC V0.1"
+config/name="Projeto TCC"
+config/version="0.2"
 run/main_scene="uid://dib4w6qgwebq0"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -24,10 +25,6 @@ GlobalGameData="*res://system/Script/GlobalGameData.gd"
 window/size/viewport_width=1365
 window/size/viewport_height=768
 window/stretch/mode="viewport"
-
-[global_group]
-
-Enemies="Inimigos padrões"
 
 [input]
 

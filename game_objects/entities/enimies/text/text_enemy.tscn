@@ -1,0 +1,73 @@
+[gd_scene load_steps=11 format=3 uid="uid://q7ea45js81q5"]
+
+[ext_resource type="Texture2D" uid="uid://d2om88q1oec6c" path="res://game_objects/entities/enimies/SpriteSheets/notes_SpriteSheet.png" id="1_el63p"]
+[ext_resource type="Script" uid="uid://cwlwue04r0q04" path="res://game_objects/entities/enimies/text/text_enemy.gd" id="1_ldm8s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ldm8s"]
+atlas = ExtResource("1_el63p")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kvanw"]
+atlas = ExtResource("1_el63p")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qdfke"]
+atlas = ExtResource("1_el63p")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o808f"]
+atlas = ExtResource("1_el63p")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yhp6a"]
+atlas = ExtResource("1_el63p")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w5bkd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ldm8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kvanw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qdfke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o808f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yhp6a")
+}],
+"loop": true,
+"name": &"IDLE",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ldm8s"]
+size = Vector2(19.5, 22.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvanw"]
+size = Vector2(23, 25)
+
+[node name="Text Enemy" type="CharacterBody2D"]
+script = ExtResource("1_ldm8s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w5bkd")
+animation = &"IDLE"
+frame_progress = 0.3035974
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.75, 0.25)
+shape = SubResource("RectangleShape2D_ldm8s")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1.5, 0.5)
+shape = SubResource("RectangleShape2D_kvanw")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

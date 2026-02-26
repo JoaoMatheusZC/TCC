@@ -19,15 +19,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Button" type="Button" parent="UI"]
-layout_mode = 0
-offset_left = 976.0
-offset_top = 8.0
-offset_right = 1101.0
-offset_bottom = 39.0
-text = "Slot de Magia 1"
-
-[node name="Button2" type="Button" parent="UI"]
+[node name="Back" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 1008.0
 offset_top = 600.0
@@ -35,14 +27,40 @@ offset_right = 1063.0
 offset_bottom = 631.0
 text = "Voltar"
 
-[node name="Button3" type="Button" parent="UI"]
+[node name="Save Magic 1" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 976.0
+offset_top = 8.0
+offset_right = 1101.0
+offset_bottom = 39.0
+text = "Salvar Magia 1"
+
+[node name="Load Magic 1" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 976.0
 offset_top = 64.0
 offset_right = 984.0
 offset_bottom = 72.0
-text = "Carregar Slot 1"
+text = "Carregar Magia 1"
 
-[connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="UI/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="UI/Button3" to="." method="_on_button_3_pressed"]
+[node name="Save Magic 2" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 976.0
+offset_top = 128.0
+offset_right = 1096.0
+offset_bottom = 159.0
+text = "Salvar Magia 2"
+
+[node name="Load Magic 2" type="Button" parent="UI"]
+layout_mode = 0
+offset_left = 976.0
+offset_top = 184.0
+offset_right = 1116.0
+offset_bottom = 215.0
+text = "Carregar Magia 2"
+
+[connection signal="pressed" from="UI/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="UI/Save Magic 1" to="." method="_on_save_magic_1_pressed"]
+[connection signal="pressed" from="UI/Load Magic 1" to="." method="_on_load_magic_1_pressed"]
+[connection signal="pressed" from="UI/Save Magic 2" to="." method="_on_save_magic_2_pressed"]
+[connection signal="pressed" from="UI/Load Magic 2" to="." method="_on_load_magic_2_pressed"]

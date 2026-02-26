@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://chn3wgahafqj8"]
+
+[ext_resource type="Script" uid="uid://dncsb004s7iim" path="res://system/Script/options.gd" id="1_ywbtr"]
+
+[node name="Options" type="Node"]
+process_mode = 3
+script = ExtResource("1_ywbtr")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Back Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 31.0
+text = "Voltar"
+
+[node name="FullScreen Button" type="CheckButton" parent="Control"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 95.0
+text = "Tela Cheia"
+
+[connection signal="pressed" from="Control/Back Button" to="." method="_on_back_button_pressed"]
+[connection signal="toggled" from="Control/FullScreen Button" to="." method="_on_full_screen_button_toggled"]

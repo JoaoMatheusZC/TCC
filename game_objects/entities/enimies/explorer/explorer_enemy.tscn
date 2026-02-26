@@ -1,18 +1,18 @@
 [gd_scene load_steps=9 format=3 uid="uid://dhthdlh6rdwu7"]
 
-[ext_resource type="Script" uid="uid://qu5litd2w7ph" path="res://game_objects/entities/enimies/enimies.gd" id="1_damtv"]
-[ext_resource type="Texture2D" uid="uid://klwpuboukb06" path="res://game_objects/entities/enimies/explorer/explorer_SpriteSheet.png" id="1_o8eps"]
+[ext_resource type="Script" uid="uid://qu5litd2w7ph" path="res://game_objects/entities/enimies/explorer/explorer_enemy.gd" id="1_gqq4d"]
+[ext_resource type="Texture2D" uid="uid://klwpuboukb06" path="res://game_objects/entities/enimies/explorer/explorer_SpriteSheet.png" id="2_rfbwn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e6fuq"]
-atlas = ExtResource("1_o8eps")
+atlas = ExtResource("2_rfbwn")
 region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fbo3q"]
-atlas = ExtResource("1_o8eps")
+atlas = ExtResource("2_rfbwn")
 region = Rect2(32, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xiqoc"]
-atlas = ExtResource("1_o8eps")
+atlas = ExtResource("2_rfbwn")
 region = Rect2(96, 96, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_nk55y"]
@@ -42,8 +42,8 @@ size = Vector2(22, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pthl0"]
 size = Vector2(24, 22)
 
-[node name="Explorer Enime" type="CharacterBody2D" groups=["Enemies"]]
-script = ExtResource("1_damtv")
+[node name="Explorer Enemy" type="CharacterBody2D"]
+script = ExtResource("1_gqq4d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_nk55y")

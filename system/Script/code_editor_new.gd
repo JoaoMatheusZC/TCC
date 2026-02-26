@@ -14,6 +14,7 @@ var ifble = true
 var spell_type = ""
 var damage = 0
 var defence = 0
+var regen = 0
 #Tem q zerar no começo do codigo para limpar qualquer atribução anterior de codigo ja apgado
 
 
@@ -52,7 +53,7 @@ func Terminal_Read(text:String):
 			If_Change()
 			i += 1
 		
-		elif words.begins_with("Magia().") or words.begins_with("Defesa()"):
+		elif words.begins_with("Magia()."):
 			Spell_Read(line[i])
 			i += 1
 		
@@ -321,11 +322,11 @@ func Spell_Read(line):
 					damage = var_memory[type_and_value_damage[1]]
 				else:
 					damage = float(type_and_value_damage[1])
-				GlobalGameData.damage = damage
+				
 			else:
 				pass#tem q dar erro aq!!!!
 		
-	elif words[0] == "Magia()":
+	if words[0] == "Magia()":
 		spell_type = "Defesa"
 		for i in words.size()-1:
 			if words[i+1].begins_with("Defesa("):
@@ -337,40 +338,71 @@ func Spell_Read(line):
 					damage = float(type_and_value_defence[1])
 			else:
 				pass#tem q dar erro aq!!!!
+
+	if words[0] == "Magia()":
+		spell_type = "Cura"
+		for i in words.size()-1:
+			if words[i+1].begins_with("Cura("):
+				var type_and_value_regen = words[i+1].split("(")
+				type_and_value_regen[1] = type_and_value_regen[1].replace(")","")
+				if var_memory.has(type_and_value_regen[1]):
+					regen = var_memory[type_and_value_regen[1]]
+				else:
+					regen = float(type_and_value_regen[1])
+				
+			else:
+				pass#tem q dar erro aq!!!!
 	
 	print("Damage: ")
 	print(damage)
+	print("Cura: ")
+	print(regen)
 	#print("Defence: ")
 	#print(defence_type)
+	GlobalGameData.damage = damage
+	GlobalGameData.regen = regen
 
-func Save_File(text):
-	var path = "user://teste.txt"
+
+func Save_File(text,path):
 	
 	var arquivo = FileAccess.open(path, FileAccess.WRITE)
 	if arquivo:
 		arquivo.store_string(text)
 		arquivo.close()
-		print("Deu bom")
 	else:
 		print("Deu ruim")
 
-func Load_File():
-	var path = "user://teste.txt"
+func Load_File(path):
 	
 	if FileAccess.file_exists(path):
 		var arquivo = FileAccess.open(path, FileAccess.READ_WRITE)
 		var conteudo = arquivo.get_as_text()
 		arquivo.close()
 		$TextEdit.set_text(conteudo)
+		
 
-func _on_button_pressed() -> void:
-	Terminal_Read($TextEdit.get_text())
-	
-	Save_File($TextEdit.get_text())
 
-func _on_button_2_pressed() -> void:
+#Botões
+
+func _on_back_pressed() -> void:
 	back.emit()
 
 
-func _on_button_3_pressed() -> void:
-	Load_File()
+func _on_save_magic_1_pressed() -> void:
+	Terminal_Read($TextEdit.get_text())
+	
+	Save_File($TextEdit.get_text(), "user://Magia1.txt")
+
+func _on_load_magic_1_pressed() -> void:
+	Load_File("user://Magia1.txt")
+
+
+
+func _on_save_magic_2_pressed() -> void:
+	Terminal_Read($TextEdit.get_text())
+	
+	Save_File($TextEdit.get_text(), "user://Magia2.txt")
+
+
+func _on_load_magic_2_pressed() -> void:
+	Load_File("user://Magia2.txt")

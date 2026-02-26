@@ -1,10 +1,13 @@
 extends CharacterBody2D
 
-var life = 10
-var damage = GlobalGameData.damage
-var speed = 300.0
+@export var life = 10
+@export var max_life = 10
+@export var speed = 300.0
 
-#signal change
+
+func _ready() -> void:
+	GlobalGameData.player_life = life
+	GlobalGameData.player_max_life = max_life
 
 func _physics_process(delta: float) -> void:
 
@@ -20,9 +23,3 @@ func _physics_process(delta: float) -> void:
 		velocity.y = move_toward(velocity.y, 0, speed)
 
 	move_and_slide()
-
-
-#func _on_area_2d_body_entered(body: Node2D) -> void:
-	#if body.is_in_group("Enemies"):
-		#print("aa")
-		#emit_signal("change")

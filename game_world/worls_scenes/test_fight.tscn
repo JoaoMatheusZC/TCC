@@ -1,31 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvdbd01cwyfia"]
+[gd_scene load_steps=3 format=3 uid="uid://cvdbd01cwyfia"]
 
-[ext_resource type="PackedScene" uid="uid://nnm2sihv7ik8" path="res://game_objects/entities/player/player.tscn" id="1_mxo8d"]
 [ext_resource type="Script" uid="uid://b1gl1v3842xjw" path="res://game_world/worls_scenes/test_fight.gd" id="1_t13a3"]
-[ext_resource type="PackedScene" uid="uid://dhthdlh6rdwu7" path="res://game_objects/entities/enimies/explorer/explorer_enime.tscn" id="2_gwadl"]
+[ext_resource type="Texture2D" uid="uid://d35e2nbtk2l8v" path="res://icon.svg" id="2_gwadl"]
 
 [node name="Main Fight" type="Node"]
 process_mode = 2
 script = ExtResource("1_t13a3")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2(8, 0)
 color = Color(0.29586652, 0.2958665, 0.2958665, 1)
 polygon = PackedVector2Array(-24, -24, 1216, -24, 1216, 696, -32, 688)
 
-[node name="Player" parent="." instance=ExtResource("1_mxo8d")]
-process_mode = 1
+[node name="Player" type="Sprite2D" parent="."]
 position = Vector2(232, 392)
 scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_gwadl")
 
-[node name="Enime 1" type="Node" parent="."]
+[node name="ProgressBar" type="ProgressBar" parent="Player"]
+offset_left = -64.0
+offset_top = 80.0
+offset_right = 64.0
+offset_bottom = 107.0
 
-[node name="Explorer Enime" parent="Enime 1" instance=ExtResource("2_gwadl")]
-process_mode = 3
-position = Vector2(887.99994, 104)
-scale = Vector2(5, 5)
-input_pickable = true
+[node name="Button" type="Button" parent="."]
+offset_left = 128.0
+offset_top = 288.0
+offset_right = 336.0
+offset_bottom = 496.0
+action_mode = 0
+flat = true
 
-[node name="Enime Select 1" type="Button" parent="Enime 1"]
+[node name="Enemy 1" type="Node" parent="."]
+
+[node name="Enime Select 1" type="Button" parent="Enemy 1"]
 offset_left = 816.00006
 offset_top = 40.000004
 offset_right = 960.0
@@ -34,19 +42,15 @@ action_mode = 0
 flat = true
 metadata/_edit_lock_ = true
 
-[node name="ProgressBar" type="ProgressBar" parent="Enime 1"]
+[node name="ProgressBar" type="ProgressBar" parent="Enemy 1"]
 offset_left = 792.0
 offset_top = 192.0
 offset_right = 984.0
 offset_bottom = 219.0
 
-[node name="Enime 2" type="Node" parent="."]
+[node name="Enemy 2" type="Node" parent="."]
 
-[node name="Explorer Enime" parent="Enime 2" instance=ExtResource("2_gwadl")]
-position = Vector2(599.99994, 103.99999)
-scale = Vector2(5, 5)
-
-[node name="Enime Select 2" type="Button" parent="Enime 2"]
+[node name="Enime Select 2" type="Button" parent="Enemy 2"]
 offset_left = 528.0
 offset_top = 40.000008
 offset_right = 672.0
@@ -55,7 +59,7 @@ action_mode = 0
 flat = true
 metadata/_edit_lock_ = true
 
-[node name="ProgressBar" type="ProgressBar" parent="Enime 2"]
+[node name="ProgressBar" type="ProgressBar" parent="Enemy 2"]
 offset_left = 504.0
 offset_top = 192.0
 offset_right = 696.0
@@ -67,7 +71,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Button" type="Button" parent="UI"]
+[node name="Magic 1" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 64.0
 offset_top = 576.0
@@ -76,18 +80,17 @@ offset_bottom = 632.0
 text = "Magia 1"
 flat = true
 
-[node name="Button2" type="Button" parent="UI"]
+[node name="Magic 2" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 144.0
 offset_top = 576.0
 offset_right = 212.0
 offset_bottom = 632.0
-disabled = true
 text = "Magia 2
 "
 flat = true
 
-[node name="Button3" type="Button" parent="UI"]
+[node name="Grimorio" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 240.0
 offset_top = 576.0
@@ -96,27 +99,27 @@ offset_bottom = 632.0
 text = "Grimorio"
 flat = true
 
-[node name="Button4" type="Button" parent="UI"]
+[node name="Magic 3" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 336.0
 offset_top = 576.0
 offset_right = 414.0
 offset_bottom = 632.0
 disabled = true
-text = "Magia 4"
+text = "Magia 3"
 flat = true
 
-[node name="Button5" type="Button" parent="UI"]
+[node name="Magic 4" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 440.0
 offset_top = 576.0
 offset_right = 518.0
 offset_bottom = 632.0
 disabled = true
-text = "Magia 5"
+text = "Magia 4"
 flat = true
 
-[node name="Button6" type="Button" parent="UI"]
+[node name="Escape" type="Button" parent="UI"]
 layout_mode = 0
 offset_left = 1024.0
 offset_top = 576.0
@@ -124,8 +127,10 @@ offset_right = 1071.0
 offset_bottom = 607.0
 text = "Fugir"
 
-[connection signal="pressed" from="Enime 1/Enime Select 1" to="." method="_on_enime_select_1_pressed"]
-[connection signal="pressed" from="Enime 2/Enime Select 2" to="." method="_on_enime_select_2_pressed"]
-[connection signal="pressed" from="UI/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="UI/Button3" to="." method="_on_button_3_pressed"]
-[connection signal="pressed" from="UI/Button6" to="." method="_on_button_6_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Enemy 1/Enime Select 1" to="." method="_on_enime_select_1_pressed"]
+[connection signal="pressed" from="Enemy 2/Enime Select 2" to="." method="_on_enime_select_2_pressed"]
+[connection signal="pressed" from="UI/Magic 1" to="." method="_on_magic_1_pressed"]
+[connection signal="pressed" from="UI/Magic 2" to="." method="_on_magic_2_pressed"]
+[connection signal="pressed" from="UI/Grimorio" to="." method="_on_grimorio_pressed"]
+[connection signal="pressed" from="UI/Escape" to="." method="_on_escape_pressed"]
